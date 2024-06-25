@@ -19,6 +19,14 @@ export default {
   }
 }
 </script>
+<script setup>
+
+const pageTitle = ref('buildup'); 
+
+onMounted(() => {
+  document.title = pageTitle.value; 
+});
+</script>
 
 <style scoped>
 .home-page {
