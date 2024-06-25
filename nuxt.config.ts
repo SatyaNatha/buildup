@@ -1,9 +1,9 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// nuxt.config.ts
 export default defineNuxtConfig({
   devtools: { enabled: true },
   routeRules: {
-    // prerender index route by default
     '/': { prerender: true },
+    '/workout': { middleware: 'auth' }
   },
   plugins: [
     '~/plugins/firebase.js'
