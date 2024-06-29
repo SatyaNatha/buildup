@@ -60,6 +60,7 @@ const register = async () => {
   padding: 1rem;
   text-align: center;
 }
+
 form input {
   display: block;
   width: 100%;
@@ -68,6 +69,7 @@ form input {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
 form button {
   padding: 0.5rem 1rem;
   background-color: #007bff;
@@ -76,6 +78,7 @@ form button {
   border-radius: 4px;
   cursor: pointer;
 }
+
 form button:hover {
   background-color: #0056b3;
 }

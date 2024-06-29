@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useNuxtApp } from '#app';
 import { signInWithEmailAndPassword } from 'firebase/auth'; // Import Firebase auth
@@ -55,17 +55,6 @@ const login = async () => {
 
 const validateEmail = (email: string) => /^[^@]+@\w+(\.\w+)+\w$/.test(email);
 const validatePassword = (password: string) => password.length >= 6;
-
-// Check if user is already logged in (auto-login on page refresh)
-onMounted(() => {
-  const storedUser = localStorage.getItem('user');
-  if (storedUser) {
-    const user = JSON.parse(storedUser);
-    if (user && user.uid) {
-      router.push('/workout');
-    }
-  }
-});
 </script>
 
 <style scoped>
@@ -75,6 +64,7 @@ onMounted(() => {
   padding: 1rem;
   text-align: center;
 }
+
 form input {
   display: block;
   width: 100%;
@@ -83,6 +73,7 @@ form input {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
 form button {
   padding: 0.5rem 1rem;
   background-color: #007bff;
@@ -91,6 +82,7 @@ form button {
   border-radius: 4px;
   cursor: pointer;
 }
+
 form button:hover {
   background-color: #0056b3;
 }
