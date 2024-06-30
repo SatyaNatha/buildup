@@ -2,12 +2,12 @@
   <div>
     <header>
       <a href="index.vue" class="logo">
-        <img src="Logo 2.png" />
+        <img src="./Logo 2.png" />
       </a>
       <div class="tombolAtas">
         <nav>
-          <a href="register.vue" class="signUp">Sign Up</a>
-          <a href="login.vue" class="signIn">Sign In</a>
+          <router-link to="/register" class="signUp">Sign Up</router-link>
+          <router-link to="/login" class="signIn">Sign In</router-link>
         </nav>
       </div>
     </header>
@@ -16,12 +16,12 @@
       <h2>Aplikasi Olahraga di Rumah</h2>
       <div class="content">
         <div class="item">
-          <img src="gambar5.jpg" alt="Image 2" />
+          <img src="./gambar5.jpg" alt="Image 2" />
           <h2>Jadwalkan Aktivitas Anda</h2>
           <p>Atur dan kelola aktivitas harian Anda dengan mudah.</p>
         </div>
         <div class="item">
-          <img src="gambar4.jpg" alt="Image 3" />
+          <img src="./gambar4.jpg" alt="Image 3" />
           <h2>Capai Tujuan Kebugaran Anda.</h2>
           <p>Tetapkan dan capai tujuan kebugaran Anda secara efektif.</p>
         </div>
