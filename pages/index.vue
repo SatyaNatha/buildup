@@ -1,13 +1,13 @@
 <template>
   <div>
     <header>
-      <a href="index.html" class="logo">
-        <img src="./Logo 2.png">
+      <a href="index.vue" class="logo">
+        <img src="Logo 2.png" />
       </a>
       <div class="tombolAtas">
         <nav>
-          <router-link to="/register" class="signUp">Sign Up</router-link> 
-          <router-link to="/login" class="signIn">Sign In</router-link>
+          <a href="register.vue" class="signUp">Sign Up</a>
+          <a href="login.vue" class="signIn">Sign In</a>
         </nav>
       </div>
     </header>
@@ -16,24 +16,15 @@
       <h2>Aplikasi Olahraga di Rumah</h2>
       <div class="content">
         <div class="item">
-          <img src="./gambar1.jpg" alt="Image 1">
+          <img src="gambar5.jpg" alt="Image 2" />
           <h2>Jadwalkan Aktivitas Anda</h2>
           <p>Atur dan kelola aktivitas harian Anda dengan mudah.</p>
         </div>
         <div class="item">
-          <img src="./gambar2.jpg" alt="Image 2">
-          <h2>Lacak Kemajuan Latihan Anda</h2>
-          <p>Catat kemajuan dan pencapaian latihan Anda.</p>
-        </div>
-        <div class="item">
-          <img src="./gambar3.jpg" alt="Image 3">
+          <img src="gambar4.jpg" alt="Image 3" />
           <h2>Capai Tujuan Kebugaran Anda.</h2>
           <p>Tetapkan dan capai tujuan kebugaran Anda secara efektif.</p>
         </div>
-      </div>
-      <div class="buttons">
-        <button class="btn-sign-up" @click="signUp">Sign Up</button>
-        <button class="btn-sign-in" @click="signIn">Sign In</button>
       </div>
     </main>
   </div>
@@ -56,173 +47,140 @@ export default {
 </script>
 
 <style scoped>
-/* Gaya CSS yang telah Anda berikan */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f0f0f0;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background-color: #ebeaea;
-  border-bottom: 2px solid #ff914d;
-  color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-header .logo {
-  display: flex;
-  font-size: 25px;
-  font-weight: bold;
-  font-family: 'Abril Fatface';
-  color: #ffffff;
-  background-color: #ff914d;
-  border-radius: 5px;
-  width: 190px;
-  height: 75px;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-header .logo img {
-  height: 200px;
-}
-
-header .tulisan {
-  margin-right: 10px;
-}
-
-header nav a {
-  color: #1e1d1d;
-  text-decoration: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-weight: bold;
-  margin-left: auto;
-  font-size: 20px;
-  transition: color 0.3s ease;
-}
-
-header nav a.signUp {
-  font-family: 'Roboto';
-  color: #ff914d;
-}
-
-header nav a.signIn {
-  font-family: 'Roboto';
-}
-
-header nav a.signUp:hover {
-  background-color: #ff914d;
-  color: #ffffff;
-}
-
-header nav a.signIn:hover {
-  background-color: #ff914d;
-  color: #ffffff;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  background-color: #ebeaea;
-  color: #ff914d;
-  min-height: 100vh;
-}
-
-main h1 {
-  font-size: 48px;
-  margin-bottom: 0px;
-  color: #f08948;
-}
-
-main h2 {
-  font-size: 25px;
-  margin-bottom: 90px;
-  color: #ffffff;
-  background-color: #ff914d;
-  padding: 10px 20px;
-  border-radius: 10px;
-}
-
-.content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-}
-
-.content .item {
-  background-color: #ff914d;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
-}
-
-.content .item img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.content .item h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #ffffff;
-}
-
-.content .item p {
-  font-size: 16px;
-  margin-bottom: 20px;
-  color: #ffffff;
-}
-
-.buttons {
-  display: flex;
-  gap: 20px;
-  margin-top: 40px;
-}
-
-.buttons button {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.buttons .btn-sign-up {
-  background-color: #ff914d;
-  color: #fff;
-}
-
-.buttons .btn-sign-up:hover {
-  color: #c6c6c6;
-  background-color: #d17635;
-  transform: scale(1.1);
-}
-
-.buttons .btn-sign-in {
-  background-color: #fff;
-  color: #ff914d;
-  border: 2px solid #ff914d;
-}
-
-.buttons .btn-sign-in:hover {
-  color: #c6c6c6;
-  background-color: #d17635;
-  transform: scale(1.1);
-}
-</style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #ebeaea;
+    border-bottom: 2px solid #af6f01;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  header .logo {
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Abril Fatface';
+    color: #ffffff;
+    background-color: #af6f01;
+    border-radius: 5px;
+    width: 190px;
+    height: 75px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  header .logo img {
+    height: 200px;
+  }
+  
+  header .tulisan {
+    margin-right: 10px;
+  }
+  
+  header nav a {
+    color: #1e1d1d;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-left: auto;
+    font-size: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  header nav a.signUp {
+    font-family: 'Roboto';
+    color: #af6f01;
+  }
+  
+  header nav a.signIn {
+    font-family: 'Roboto';
+  }
+  
+  header nav a.signUp:hover {
+    background-color: #ff914d;
+    color: #ffffff;
+  }
+  
+  header nav a.signIn:hover {
+    background-color: #ff914d;
+    color: #ffffff;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #f7f7f7;
+    color: #af6f01;
+    min-height: 100vh;
+  }
+  
+  main h1 {
+    font-size: 48px;
+    margin-bottom: 0px;
+    color: #af6f01;
+  }
+  
+  main h2 {
+    font-size: 25px;
+    margin-bottom: 90px;
+    color: #ffffff;
+    background-color: #af6f01;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+  
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 150px;
+    justify-content: center;
+  }
+  
+  .content .item {
+    background-color: #af6f01;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+  }
+  
+  .content .item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .content .item h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+  
+  .content .item p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  </style>
+  
