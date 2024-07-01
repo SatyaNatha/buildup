@@ -2,7 +2,7 @@
   <div class="page-container">
     <div class="container">
       <router-link to="/" class="logo">
-        <img src="./Logo 2.png" alt="BuildUp Logo" />
+        <img src="./Logo.png" alt="BuildUp Logo" />
       </router-link>
       <h2>Register/Sign Up here</h2>
       <form id="registerForm" @submit.prevent="register">
@@ -18,9 +18,6 @@
       </form>
       <div class="login-link">
         <p>Already have an account? <router-link to="/login">Login.</router-link></p>
-      </div>
-      <div class="home-link">
-        <p><router-link to="/">Back to Home</router-link></p>
       </div>
     </div>
   </div>
@@ -170,20 +167,6 @@ h2 {
 }
 
 .login-link a:hover {
-  text-decoration: underline;
-}
-
-.home-link {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.home-link a {
-  color: blue;
-  text-decoration: none;
-}
-
-.home-link a:hover {
   text-decoration: underline;
 }
 </style>

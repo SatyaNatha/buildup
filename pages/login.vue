@@ -2,7 +2,7 @@
   <div class="page-container">
     <div class="container">
       <router-link to="/" class="logo">
-        <img src="./Logo 2.png" alt="BuildUp Logo" />
+        <img src="./Logo.png" alt="BuildUp Logo" />
       </router-link>
       <h2>Sign In here</h2>
       <form id="loginForm" @submit.prevent="login">

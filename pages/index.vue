@@ -2,7 +2,7 @@
   <div>
     <header>
       <a href="index.vue" class="logo">
-        <img src="./Logo 2.png" />
+        <img src="./Logo.png" />
       </a>
       <div class="tombolAtas">
         <nav>
