@@ -3,7 +3,7 @@
     <header>
       <!-- Ubah router-link pada logo menjadi elemen div -->
       <div class="logo">
-        <img src="./Logo 2.png" />
+        <img src="./Logo.png" />
       </div>
       <div class="tombolAtas">
         <nav>
