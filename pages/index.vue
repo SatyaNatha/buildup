@@ -7,7 +7,6 @@
       </div>
       <div class="tombolAtas">
         <nav>
-          <!-- Link navigasi tetap menggunakan router-link -->
           <router-link to="/register" class="signUp">Sign Up</router-link>
           <router-link to="/login" class="signIn">Sign In</router-link>
         </nav>
@@ -184,4 +183,4 @@ export default {
     gap: 20px;
     margin-top: 40px;
   }
-  </style>
+</style>
