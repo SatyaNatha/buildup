@@ -1,11 +1,13 @@
 <template>
   <div>
     <header>
-      <a href="index.vue" class="logo">
-        <img src="./Logo.png" />
-      </a>
+      <!-- Ubah router-link pada logo menjadi elemen div -->
+      <div class="logo">
+        <img src="./Logo 2.png" />
+      </div>
       <div class="tombolAtas">
         <nav>
+          <!-- Link navigasi tetap menggunakan router-link -->
           <router-link to="/register" class="signUp">Sign Up</router-link>
           <router-link to="/login" class="signIn">Sign In</router-link>
         </nav>
@@ -77,7 +79,7 @@ export default {
     height: 75px;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    cursor: default; /* Cursor default untuk menandakan tidak ada aksi saat diklik */
   }
   
   header .logo img {
@@ -183,4 +185,3 @@ export default {
     margin-top: 40px;
   }
   </style>
-  

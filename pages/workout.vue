@@ -1,45 +1,49 @@
 <template>
   <div class="workout-page">
-    <h2 class="page-title">Your Workouts</h2>
-    <ul class="workouts-list">
-      <li v-for="workout in workouts" :key="workout.id" class="workout-item">
-        {{ workout.name }}
-        <div class="workout-buttons">
-          <button @click="addToSchedule(workout)" class="btn-schedule">Add to Schedule</button>
-          <button @click="deleteWorkout(workout.id)" class="btn-delete">Delete</button>
+    <div class="background-container">
+      <div class="content-container">
+        <h2 class="page-title">Your Workouts</h2>
+        <ul class="workouts-list">
+          <li v-for="workout in workouts" :key="workout.id" class="workout-item">
+            {{ workout.name }}
+            <div class="workout-buttons">
+              <button @click="addToSchedule(workout)" class="btn-schedule">Add to Schedule</button>
+              <button @click="deleteWorkout(workout.id)" class="btn-delete">Delete</button>
+            </div>
+          </li>
+        </ul>
+
+        <div class="add-workout">
+          <input type="text" v-model="newWorkout" placeholder="Enter new workout" class="input-workout" />
+          <button @click="addWorkout" class="btn-add-workout">Add</button>
         </div>
-      </li>
-    </ul>
 
-    <div class="add-workout">
-      <input type="text" v-model="newWorkout" placeholder="Enter new workout" class="input-workout" />
-      <button @click="addWorkout" class="btn-add-workout">Add</button>
-    </div>
+        <div class="daily-schedule">
+          <h3>Daily Schedule</h3>
+          <ul class="schedule-list">
+            <li v-for="(workout, index) in dailySchedule" :key="index" class="schedule-item">
+              {{ workout.name }}
+              <button @click="removeFromSchedule(index)" class="btn-remove">Remove</button>
+            </li>
+          </ul>
+          <div class="target-setting">
+            <input type="number" v-model.number="dailyTarget" placeholder="Set daily target (minutes)" class="input-target" />
+            <button @click="setTarget" class="btn-set-target">Set Target</button>
+          </div>
+          <p class="target-info">Daily Target: {{ dailyTarget }} minutes</p>
+        </div>
 
-    <div class="daily-schedule">
-      <h3>Daily Schedule</h3>
-      <ul class="schedule-list">
-        <li v-for="(workout, index) in dailySchedule" :key="index" class="schedule-item">
-          {{ workout.name }}
-          <button @click="removeFromSchedule(index)" class="btn-remove">Remove</button>
-        </li>
-      </ul>
-      <div class="target-setting">
-        <input type="number" v-model.number="dailyTarget" placeholder="Set daily target (minutes)" class="input-target" />
-        <button @click="setTarget" class="btn-set-target">Set Target</button>
+        <div class="timer">
+          <h3>Workout Timer</h3>
+          <p class="timer-display">{{ formattedTime }}</p>
+          <button @click="startTimer" class="btn-timer-start">Start</button>
+          <button @click="pauseTimer" class="btn-timer-pause">Pause</button>
+          <button @click="resetTimer" class="btn-timer-reset">Reset</button>
+        </div>
+
+        <button @click="logout" class="logout-button">Log Out</button>
       </div>
-      <p class="target-info">Daily Target: {{ dailyTarget }} minutes</p>
     </div>
-
-    <div class="timer">
-      <h3>Workout Timer</h3>
-      <p class="timer-display">{{ formattedTime }}</p>
-      <button @click="startTimer" class="btn-timer-start">Start</button>
-      <button @click="pauseTimer" class="btn-timer-pause">Pause</button>
-      <button @click="resetTimer" class="btn-timer-reset">Reset</button>
-    </div>
-
-    <button @click="logout" class="logout-button">Log Out</button>
   </div>
 </template>
 
@@ -52,18 +56,17 @@ export default {
     return {
       workouts: [],
       newWorkout: '',
-      dailySchedule: [], // Array untuk menyimpan jadwal harian
-      dailyTarget: 0, // Target harian dalam menit
-      timer: null, // Variable untuk menyimpan ID timer
-      elapsedTime: 0, // Menyimpan waktu yang telah berlalu dalam detik
+      dailySchedule: [],
+      dailyTarget: 0,
+      timer: null,
+      elapsedTime: 0,
     };
   },
   computed: {
     formattedTime() {
-      // Format elapsed time to mm:ss
       const minutes = Math.floor(this.elapsedTime / 60);
       const seconds = this.elapsedTime % 60;
-      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      return ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')};
     }
   },
   async mounted() {
@@ -74,12 +77,10 @@ export default {
     try {
       const user = auth.currentUser;
       if (user) {
-        // Fetch workouts for the current user
-        const userWorkoutsCollection = collection(db, `users/${user.uid}/workouts`);
+        const userWorkoutsCollection = collection(db, users/${user.uid}/workouts);
         const querySnapshot = await getDocs(userWorkoutsCollection);
         this.workouts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       } else {
-        // If no user is logged in, redirect to login
         this.$router.push('/login');
       }
     } catch (error) {
@@ -97,8 +98,7 @@ export default {
       try {
         const user = auth.currentUser;
         if (user) {
-          // Add workout to the current user's subcollection
-          const userWorkoutsCollection = collection(db, `users/${user.uid}/workouts`);
+          const userWorkoutsCollection = collection(db, users/${user.uid}/workouts);
           const docRef = await addDoc(userWorkoutsCollection, {
             name: this.newWorkout,
             createdAt: serverTimestamp()
@@ -106,7 +106,6 @@ export default {
           this.workouts.push({ id: docRef.id, name: this.newWorkout });
           this.newWorkout = '';
         } else {
-          // If no user is logged in, redirect to login
           this.$router.push('/login');
         }
       } catch (error) {
@@ -121,11 +120,9 @@ export default {
       try {
         const user = auth.currentUser;
         if (user) {
-          // Delete workout from the current user's subcollection
-          await deleteDoc(doc(db, `users/${user.uid}/workouts`, workoutId));
+          await deleteDoc(doc(db, users/${user.uid}/workouts, workoutId));
           this.workouts = this.workouts.filter(workout => workout.id !== workoutId);
         } else {
-          // If no user is logged in, redirect to login
           this.$router.push('/login');
         }
       } catch (error) {
@@ -133,17 +130,14 @@ export default {
       }
     },
     addToSchedule(workout) {
-      // Tambahkan workout ke jadwal harian
       this.dailySchedule.push(workout);
     },
     removeFromSchedule(index) {
-      // Hapus workout dari jadwal harian
       this.dailySchedule.splice(index, 1);
     },
     setTarget() {
       if (this.dailyTarget > 0) {
-        // Simpan target harian, misalnya ke database
-        console.log(`Daily target set to ${this.dailyTarget} minutes`);
+        console.log(Daily target set to ${this.dailyTarget} minutes);
       } else {
         alert("Please set a positive target for your daily workout.");
       }
@@ -184,22 +178,41 @@ export default {
 </script>
 
 <style scoped>
-/* Style as per your requirements */
 .workout-page {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(180deg, #FFD580 0%, #FFAB00 100%);
 }
 
+.background-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 800px;
+  height: 90%;
+  background-color: #d07b00;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.content-container {
+  background-color: #a35600;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Style untuk elemen lain */
 .page-title {
   font-size: 24px;
+  color: white;
+  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -207,7 +220,7 @@ export default {
   list-style: none;
   padding: 0;
   margin-top: 10px;
-  width: 50%;
+  width: 100%;
 }
 
 .workout-item {
@@ -219,7 +232,6 @@ export default {
   margin-bottom: 8px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
 }
 
 .workout-buttons {
@@ -282,16 +294,13 @@ export default {
 
 .daily-schedule {
   margin-top: 30px;
-  width: 100%;
-}
-
-h3 {
-  margin-bottom: 10px;
 }
 
 .schedule-list {
   list-style: none;
   padding: 0;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .schedule-item {
@@ -303,16 +312,15 @@ h3 {
   margin-bottom: 8px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
 }
 
 .btn-remove {
   padding: 6px 12px;
-  background-color: #dc3545;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  background-color: #dc3545;
+  color: white;
 }
 
 .btn-remove:hover {
@@ -322,17 +330,16 @@ h3 {
 .target-setting {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 20px;
 }
 
 .input-target {
-  width: calc(100% - 120px);
+  width: calc(100% - 100px);
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  margin-right: 10px;
 }
 
 .btn-set-target {
@@ -351,7 +358,7 @@ h3 {
 .target-info {
   margin-top: 10px;
   font-size: 16px;
-  color: #555;
+  color: white;
 }
 
 .timer {
@@ -360,27 +367,50 @@ h3 {
 }
 
 .timer-display {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  margin: 20px 0;
 }
 
 .btn-timer-start, .btn-timer-pause, .btn-timer-reset {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  color: white;
   margin: 5px;
 }
 
-.btn-timer-start:hover, .btn-timer-pause:hover, .btn-timer-reset:hover {
-  background-color: #0056b3;
+.btn-timer-start {
+  background-color: #28a745;
+}
+
+.btn-timer-start:hover {
+  background-color: #218838;
+}
+
+.btn-timer-pause {
+  background-color: #ffc107;
+  color: black;
+}
+
+.btn-timer-pause:hover {
+  background-color: #e0a800;
+}
+
+.btn-timer-reset {
+  background-color: #dc3545;
+}
+
+.btn-timer-reset:hover {
+  background-color: #c82333;
 }
 
 .logout-button {
-  margin-top: 20px;
-  padding: 12px 20px;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
   background-color: #dc3545;
   color: white;
   border: none;
