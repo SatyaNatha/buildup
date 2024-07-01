@@ -66,7 +66,7 @@ export default {
     formattedTime() {
       const minutes = Math.floor(this.elapsedTime / 60);
       const seconds = this.elapsedTime % 60;
-      return ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')};
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }
   },
   async mounted() {
@@ -77,7 +77,7 @@ export default {
     try {
       const user = auth.currentUser;
       if (user) {
-        const userWorkoutsCollection = collection(db, users/${user.uid}/workouts);
+        const userWorkoutsCollection = collection(db, `users/${user.uid}/workouts`);
         const querySnapshot = await getDocs(userWorkoutsCollection);
         this.workouts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       } else {
@@ -98,7 +98,7 @@ export default {
       try {
         const user = auth.currentUser;
         if (user) {
-          const userWorkoutsCollection = collection(db, users/${user.uid}/workouts);
+          const userWorkoutsCollection = collection(db, `users/${user.uid}/workouts`);
           const docRef = await addDoc(userWorkoutsCollection, {
             name: this.newWorkout,
             createdAt: serverTimestamp()
@@ -120,7 +120,7 @@ export default {
       try {
         const user = auth.currentUser;
         if (user) {
-          await deleteDoc(doc(db, users/${user.uid}/workouts, workoutId));
+          await deleteDoc(doc(db, `users/${user.uid}/workouts`, workoutId));
           this.workouts = this.workouts.filter(workout => workout.id !== workoutId);
         } else {
           this.$router.push('/login');
@@ -137,7 +137,7 @@ export default {
     },
     setTarget() {
       if (this.dailyTarget > 0) {
-        console.log(Daily target set to ${this.dailyTarget} minutes);
+        console.log(`Daily target set to ${this.dailyTarget} minutes`);
       } else {
         alert("Please set a positive target for your daily workout.");
       }
@@ -208,7 +208,6 @@ export default {
   overflow-y: auto;
 }
 
-/* Style untuk elemen lain */
 .page-title {
   font-size: 24px;
   color: white;
